@@ -157,7 +157,7 @@ function Hero({ currAddr, signer }) {
           </span>
         </h2>
         <h2>
-          Amount of TRB locked up: <span className="bold">100,000 TRB</span>
+          Max amount of TRB: <span className="bold">100,000 TRB</span>
         </h2>
         <h2>
           Rate of return: <span className="bold">2.5% (approx. 10% APR)</span>
