@@ -14,6 +14,10 @@ function App() {
   const [currAddr, setCurrAddr] = useState("");
   const [signer, setSigner] = useState({});
   //Globals
+  //Listening for changes in ChainId (Mainnet/Rinkeby/Others)
+  window.ethereum.on("chainChanged", () => {
+    window.location.reload();
+  });
   //Listening for changes in Metamask Accounts
   window.ethereum.on("accountsChanged", (accounts) => {
     setCurrAddr(ethers.utils.getAddress(accounts[0]));
