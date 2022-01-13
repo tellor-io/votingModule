@@ -11,18 +11,19 @@ import { ethers } from "ethers";
 const tellorGovMainnet = "0x51d4088d4EeE00Ae4c55f46E0673e9997121DB00";
 const tellorGovRinkeby = "0xA64Bb0078eB80c97484f3f09Adb47b9B73CBcA00";
 export const AppContext = React.createContext();
-export const provider = new ethers.providers.Web3Provider(
-  window.ethereum,
-  "any"
-);
 
 if (typeof window.ethereum !== "undefined") {
   detectEthereumProvider()
     .then((res) => {
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
       const signer = provider.getSigner();
       let appContext = {
         chainId: "",
         currentAddress: "",
+        provider: provider,
         signer: signer,
         tellorGovMainnet: tellorGovMainnet,
         tellorGovRinkeby: tellorGovRinkeby,
