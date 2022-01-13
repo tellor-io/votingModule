@@ -3,6 +3,10 @@ import "../styles/WrongNetwork.css";
 import { ReactComponent as Tellor } from "../assets/Tellor_TRB.svg";
 
 function WrongNetwork() {
+  //Listening for changes in ChainId (Mainnet/Rinkeby/Others)
+  window.ethereum.on("chainChanged", () => {
+    window.location.reload();
+  });
   return (
     <div className="WrongNetwork__Container">
       <Tellor className="WrongNetwork__Swoosh" />
