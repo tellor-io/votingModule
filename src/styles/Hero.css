@@ -16,14 +16,18 @@
   line-height: 1.5rem !important;
   margin: 2% 0;
 }
+.Hero__View h3 {
+  font-weight: 500;
+  align-content: center;
+}
 .Hero__LinkToWhitePaper {
   margin: 2% 0;
 }
 .Hero__LinkToWhitePaper a {
   font-weight: 500;
-  font-size: 1.05rem !important;
-  line-height: 1.5rem !important;
-  color: #262626;
+  font-size: 1.05rem;
+  line-height: 1.5rem;
+  color: #999999;
 }
 .Hero__CTAContainer {
   margin-top: 50px;
@@ -75,6 +79,26 @@
 .Hero__VoteInOpposition:hover {
   cursor: pointer;
 }
+.bold {
+  font-weight: 700 !important;
+}
+.underline {
+  text-decoration: underline;
+}
+.special {
+  font-size: 1.25rem !important;
+  line-height: 1.5rem !important;
+}
+.hr {
+  width: 80%;
+  margin: 5% auto;
+  border: 1px solid #999999;
+}
+.startEndDate {
+  margin: 3% 0 2% 0 !important;
+  font-weight: 700 !important;
+  text-align: center;
+}
 
 /* MEDIA QUERIES */
 @media (max-width: 850px) {
@@ -86,6 +110,9 @@
   }
   .Hero__View {
     padding: 50px 120px 80px 120px;
+  }
+  .Hero__View h2 {
+    margin: 5% 0;
   }
 }
 
@@ -108,6 +135,9 @@
 @media (max-width: 525px) {
   .Hero__View {
     padding: 30px 80px 80px 80px;
+  }
+  .Hero__View h2 {
+    margin: 10% 0;
   }
 }
 

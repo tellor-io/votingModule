@@ -112,15 +112,67 @@ function Hero({ currAddr, signer }) {
   return (
     <div className="Hero">
       <div className="Hero__View">
-        <h1>Tellor Treasuries!</h1>
+        <h1> What are Tellor Treasuries?</h1>
         <h2>
-          Tellor is now voting for a treasuries upgrade. Cast your vote below!
+          Stake your TRB and vote on the future monetary policy of Tellor, while
+          earning rewards in the process. This new type of open market community
+          will decide the circulating supply of TRB and future rates of return
+          for staking TRB.
         </h2>
-        <h3 className="Hero__LinkToWhitePaper">
-          <a href="https://www.tellor.io/static/media/tellorX-whitepaper.f6527d55.pdf">
-            Link to the Tellor Whitepaper
+        <h2 className="Hero__LinkToWhitePaper bold">
+          For more info read about it{" "}
+          <a
+            href="https://docs.tellor.io/tellor/whitepaper/tellor-oracle-overview/monetary-policy"
+            alt="https://docs.tellor.io/tellor/whitepaper/tellor-oracle-overview/monetary-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bold special"
+          >
+            here
           </a>
-        </h3>
+          .
+        </h2>
+        <h2 className="Hero__LinkToWhitePaper bold">
+          Watch the tech talk on it{" "}
+          <a
+            href="https://www.youtube.com/watch?v=25iawqdtmCs&t=682s"
+            alt="https://www.youtube.com/watch?v=25iawqdtmCs&t=682s"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bold special"
+          >
+            here
+          </a>
+          .
+        </h2>
+        <h1>What am I voting on exactly?</h1>
+        <h2>
+          This is the vote to kick off the first Treasury which determines the
+          parameters such as: the max amount of TRB that can be locked up, the
+          rate of return, and the duration of the treasury period.{" "}
+        </h2>
+        <h2>
+          <span className="bold underline">
+            For the first Treasury we are proposing:
+          </span>
+        </h2>
+        <h2>
+          Amount of TRB locked up: <span className="bold">100,000 TRB</span>
+        </h2>
+        <h2>
+          Rate of return: <span className="bold">2.5% (approx. 10% APR)</span>
+        </h2>
+        <h2>
+          Duration: <span className="bold">90 days</span>
+        </h2>
+        <hr className="hr" />
+        <h2 className="startEndDate">
+          -- Voting Opens: January 14th, 2022 @ 2pm EST --
+        </h2>
+        <h2 className="startEndDate">
+          -- Voting Closes: January 21st, 2022 @ 2pm EST --
+        </h2>
+
         <div className="Hero__CTAContainer">
           <div className="Hero__CTAColumn">
             <h2>Click here to vote in favor of this proposal</h2>
