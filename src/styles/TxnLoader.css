@@ -1,0 +1,66 @@
+.TxnLoader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.TxnLoader h1 {
+  font-size: 1.5rem;
+  color: #fafafa;
+}
+
+.TxnLoader__Icon {
+  margin-top: 20px;
+  max-width: 15rem;
+  width: 100%;
+  height: auto;
+  stroke-linecap: round;
+}
+.TxnLoader__Icon > circle {
+  fill: none;
+  stroke-width: 3.5;
+  -webkit-animation-name: preloader;
+  animation-name: preloader;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-transform-origin: 170px 170px;
+  transform-origin: 170px 170px;
+  will-change: transform;
+}
+.TxnLoader__Icon > circle:nth-of-type(1) {
+  animation-delay: -0.15s;
+  stroke-dasharray: 550;
+}
+.TxnLoader__Icon > circle:nth-of-type(2) {
+  animation-delay: -0.3s;
+  stroke-dasharray: 500;
+}
+.TxnLoader__Icon > circle:nth-of-type(3) {
+  animation-delay: -0.45s;
+  stroke-dasharray: 450;
+}
+.TxnLoader__Icon > circle:nth-of-type(4) {
+  animation-delay: -0.6s;
+  stroke-dasharray: 300;
+}
+
+@keyframes preloader {
+  50% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
