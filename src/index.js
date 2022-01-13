@@ -68,5 +68,5 @@ if (typeof window.ethereum !== "undefined") {
     });
 } else {
   window.alert("Please install MetaMask");
-  ReactDOM.render(<PleaseConnect />, document.getElementById("root"));
+  window.location.assign("https://metamask.io/");
 }
