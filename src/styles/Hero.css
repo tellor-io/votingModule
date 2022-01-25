@@ -1,25 +1,39 @@
+/* Complete container */
 .Hero {
   width: 100%;
   height: 100%;
   color: #555555;
+  font: "Inconsolata", monospace;
 }
+/* Complete container : END*/
+
+/* Upper half container */
 .Hero__View {
-  padding: 50px 180px 80px 180px;
+  /* padding: 90px 180px 80px 100px; */
+  padding: 5% 10%;
+  /* display: flex; */
 }
 .Hero__View h1 {
-  font-size: 60px;
+  font-size: 35px;
   align-content: center;
+  margin-bottom: 30px;
+  font-family:"Inconsolata", monospace;
 }
 .Hero__View h2 {
   font-weight: 500;
-  font-size: 1.25rem !important;
-  line-height: 1.5rem !important;
+  font-size: 1.4rem !important;
+  line-height: 2rem !important;
   margin: 2% 0;
+  text-align: justify;
+  font-family:"Inconsolata", monospace;
 }
-.Hero__View h3 {
-  font-weight: 500;
-  align-content: center;
+/* Upper half container : END */
+
+.Hero__divider{
+  margin: 10%
 }
+
+ /* Links */
 .Hero__LinkToWhitePaper {
   margin: 2% 0;
 }
@@ -29,6 +43,255 @@
   line-height: 1.5rem;
   color: #999999;
 }
+/* Links : END */
+
+/* Divider Line Breaker */
+.Hero__line_breaker {
+  width: 80%;
+  margin: 1% auto;
+  border: 1px solid #999999;
+}
+/* Divider Line Breaker : END */
+
+.Hero__description_container {
+  padding: 0% 5%;
+}
+
+/* Table styleing */
+.Hero__description_container_table{
+  padding: 0px 10% 0px 10px;
+}
+
+.Hero__row_header {
+  font-weight: 550;
+  font-size: 1.4rem;
+  padding: 10% 15%;
+}
+
+/* Table styleing : END */
+
+/* -- Lower half -- */
+
+/* Lower half 'Duratoin' */
+.Hero__Duration h2 {
+  padding: 50px;
+}
+/* Lower half 'Duratoin' : END */
+
+/* Lower half container */
+.Hero__lower_half_container {
+  /* padding: 20px 20px 20px 170px; */
+  padding: 3% 10% 10% 10%;
+}
+/* Lower half container : END */
+
+/* Dates */
+.Hero__date_font {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+/* Dates : END */
+
+/* Duration */
+.Hero__duration_container {
+  margin: 3% 15% 3% 0%;
+}
+
+.Hero__duration_container_table{
+  padding: 2% 5% 5% 5%;
+}
+/* Duration : END */
+
+/* Buttons */
+.Hero__VoteInFavor {
+  font-size: 1.4rem !important;
+  line-height: 1.5rem !important;
+  background: linear-gradient(90deg, #2dfc9f 0%, #00fb89 100%);
+  color: #555555;
+  box-sizing: border-box;
+  padding: 14px 40px;
+  height: 50px;
+  width: 90%;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-family: "Inconsolata", monospace;
+}
+.Hero__VoteInFavor:hover {
+  cursor: pointer;
+}
+.Hero__VoteInOpposition {
+  font-size: 1.4rem !important;
+  line-height: 1.5rem !important;
+  background-color: #ec6f6f;
+  color: #ffffff;
+  box-sizing: border-box;
+  padding: 5% 5%px;
+  height: 3.5rem;
+  width: 90%;
+  border: 2px solid #f05b40;
+  border-radius: 25px;
+  font-weight: 600;
+  font-family: "Inconsolata", monospace;
+}
+.Hero__VoteInOpposition:hover {
+  cursor: pointer;
+}
+
+.Hero__buttons-container{
+  border: 2px rgba(167, 163, 163, 0.705) solid; 
+  border-radius: 25px;
+  background: #fafafa;
+  padding: 5% 2%;
+  margin: 5% 15% 0% 15%;
+}
+.Hero__your_vote{
+  margin-bottom: 25px;
+}
+/* Buttons : END */
+
+/* MEDIA QUERIES */
+@media (max-width: 1300px) {
+  .Hero__buttons-container{
+    
+    
+    
+    padding: 5% 2%;
+    margin: 5% 5% 0% 5%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .Hero__duration_container {
+    margin: 3% 0% 3% 0%;
+  }
+  .Hero__duration_container_table{
+    padding: 2% 0% 5% 0%;
+  }
+}
+
+@media (max-width: 850px) {
+  .Hero__View {
+    padding: 4% 5%;
+  }
+  .Hero__CTAContainer {
+    flex-direction: column;
+  }
+
+  .Hero__View h2 {
+    padding: 0px 20px 0px 0px;
+  }
+
+  .Hero__row_header {
+    font-weight: 550;
+    font-size: 1.2rem;
+    padding: 4% 5%;
+  }
+
+  .Hero__date_font {
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 770px) {
+  .Hero__View {
+    padding: 4% 5%;
+  }
+  .Hero__description_container {
+    padding: 0%;
+  }
+  .Hero__duration_container {
+    margin: 3% 5% 3% 5%;
+  }
+  .Hero__duration_container_table{
+    padding: 2% 5% 5% 5%;
+  }
+  .Hero__duration_container_table h3{
+    font-size: 2rem;
+  }
+  .Hero__row_header{
+    font-size: 1.5rem;
+  }
+
+  .Hero__row_header {
+    font-weight: 550;
+    font-size: 1.3rem;
+    padding: 3% 0%;
+  }
+
+  .Hero__date_font {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 525px) {
+  .Hero__View {
+    padding: 4% 5%;
+  }
+  .Hero__View h1 {
+    margin-bottom: 15px;
+  }
+  .Hero__View h2 {
+    font-size: 1.2rem !important;
+    line-height: 2rem !important;
+    margin: 5% 0;
+    text-align: justify;
+    font-family:"Inconsolata", monospace;
+  }
+
+  .Hero__duration_container_table{
+    padding: 2% 0% 5% 0%;
+  }
+
+  .Hero__duration_container_table{
+    padding: 2% 1% 5% 1%;
+  }
+
+  .Hero__lower_half_container {
+    /* padding: 20px 20px 20px 170px; */
+    padding: 3% 2% 10% 2%;
+  }
+}
+
+@media (max-width: 420px) {
+  .Hero__View {
+    padding: 4% 5%;
+  }
+}
+
+@media (max-width: 350px) {
+  .Hero__View {
+    padding: 3% 2%;
+  }
+  .Hero__View h1{
+    font-size: 25px;
+  }
+  .Hero__date_font {
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+  .Hero__row_header {
+    font-weight: 550;
+    font-size: 1.2rem;
+  }
+}
+
+/* Attributes */
+.bold {
+  font-weight: 700 !important;
+}
+.underline {
+  text-decoration: underline;
+}
+.special {
+  font-size: 1.25rem !important;
+  line-height: 1.5rem !important;
+}
+/* Attributes */
+
+/* No Need */
 .Hero__CTAContainer {
   margin-top: 50px;
   display: flex;
@@ -45,110 +308,38 @@
 .Hero__CTAColumn h2 {
   margin-bottom: 10%;
 }
-.Hero__VoteInFavor {
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
-  background: linear-gradient(90deg, #2dfc9f 0%, #00fb89 100%);
-  color: #555555;
-  box-sizing: border-box;
-  padding: 14px 40px;
-  height: 50px;
-  width: auto;
-  border: none;
-  border-radius: 25px;
-  font-weight: 500;
-  font-family: "Inconsolata", monospace;
-}
-.Hero__VoteInFavor:hover {
-  cursor: pointer;
-}
-.Hero__VoteInOpposition {
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
-  background-color: #fafafa;
-  color: #555555;
-  box-sizing: border-box;
-  padding: 12px 40px;
-  height: 50px;
-  width: fit-content;
-  border: 2px solid #2dfc9f;
-  border-radius: 25px;
-  font-weight: 500;
-  font-family: "Inconsolata", monospace;
-}
-.Hero__VoteInOpposition:hover {
-  cursor: pointer;
-}
-.bold {
-  font-weight: 700 !important;
-}
-.underline {
-  text-decoration: underline;
-}
-.special {
-  font-size: 1.25rem !important;
-  line-height: 1.5rem !important;
-}
-.hr {
-  width: 80%;
-  margin: 5% auto;
-  border: 1px solid #999999;
-}
-.startEndDate {
-  margin: 3% 0 2% 0 !important;
-  font-weight: 700 !important;
-  text-align: center;
-}
 
-/* MEDIA QUERIES */
-@media (max-width: 850px) {
-  .Hero__CTAContainer {
-    flex-direction: column;
-  }
-  .Hero__VoteInFavor {
-    margin-bottom: 10%;
-  }
-  .Hero__View {
-    padding: 50px 120px 80px 120px;
-  }
-  .Hero__View h2 {
-    margin: 5% 0;
-  }
+.green{
+  color: #2dfc9f;
+  background-color: #2dfc9f;
+  background: #2dfc9f;
 }
+/* No Need : END */
 
-@media (max-width: 800px) {
-  .Hero__View {
-    padding-top: 30px;
-  }
-  .Hero__View h1 {
-    text-align: center;
-    font-size: 48px;
-  }
-  .Hero__View h2 {
-    text-align: center;
-  }
-  .Hero__View h3 {
-    text-align: center;
-  }
-}
 
-@media (max-width: 525px) {
-  .Hero__View {
-    padding: 30px 80px 80px 80px;
-  }
-  .Hero__View h2 {
-    margin: 10% 0;
-  }
-}
 
-@media (max-width: 420px) {
-  .Hero__View {
-    padding: 30px 50px 80px 50px;
-  }
-}
 
-@media (max-width: 350px) {
-  .Hero__View {
-    padding: 30px 20px 80px 20px;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+/* 
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+"Noto Sans",
+sans-serif,
+"Apple Color Emoji",
+"Segoe UI Emoji",
+"Segoe UI Symbol",
+"Noto Color Emoji" 
+*/

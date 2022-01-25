@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #262626;
 }
 .NavBar__Title {
   width: 150px;
@@ -20,7 +21,7 @@
 .NavBar__Network {
   font-size: 1.1rem;
   line-height: 1.5rem;
-  color: #555555;
+  color: #e5e5e5;
   box-sizing: border-box;
   padding: 8px 30px;
   height: fit-content;
@@ -30,11 +31,12 @@
   font-weight: 700;
   font-family: "Inconsolata", monospace;
   display: flex;
+  /* background-color: #; */
 }
 .NavBar__Address {
   font-size: 1.1rem;
   line-height: 1.5rem;
-  color: #555555;
+  color: #e5e5e5;
   box-sizing: border-box;
   padding: 8px 30px;
   height: fit-content;
@@ -115,6 +117,10 @@
   }
   .NavBar__Right {
     align-items: center;
+  }
+  .NavBar__Left {
+    align-items: center;
+    margin: 10px 20px;
   }
   .NavBar__Address {
     margin-left: 0;
