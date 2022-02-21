@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import "../styles/PleaseConnect.css";
 import { ReactComponent as Tellor } from "../assets/Tellor_TRB.svg";
 // import WalletConnect from "@walletconnect/client";
@@ -11,13 +12,22 @@ import Web3Modal from "web3modal";
 
 let provider = undefined;
 
-const connectMetaMask = async ({web3})=>{
+const ConnectMetaMask = async ()=>{
+
+    let web3;
+
+    if(window.ethereum !== undefined){
+
+        web3 = new Web3(window.ethereum);
+    }
+
+    console.log(web3);
+    return web3;
 
 }
 
-const connectTrustWallet = async ({web3})=>{
+const ConnectTrustWallet = async ()=>{
   
-  console.log("Hello");
 
   const providerOptions = {
     walletconnect: {
@@ -41,10 +51,9 @@ const connectTrustWallet = async ({web3})=>{
   catch(error){
     provider = undefined;
   }
-
+  let web3;
   if(provider){
-    const web3 = new Web3(provider);
-    console.log(web3);
+    web3 = new Web3(provider);
 
     // Subscribe to accounts change
     provider.on("accountsChanged", (accounts) => {
@@ -66,11 +75,16 @@ const connectTrustWallet = async ({web3})=>{
       console.log(error);
     });
   }
+
+  return web3;
 }
 
 function PleaseConnect() {
  
   // useContext(undefined);
+  let navigate = useNavigate();
+
+  
 
   return (
     <div className='PleaseConnect__page'>
@@ -87,7 +101,12 @@ function PleaseConnect() {
         {/* Choose a wallet */}
         <div className="PleaseConnect__choose_wallet">
           <div className="PleaseConnect__Connect">
-            <button onClick={connectMetaMask}>Connect to MetaMask</button>
+            <button onClick={() => {
+              let web3 = ConnectMetaMask();
+              navigate('/vote', {web3});
+            }}>
+              Connect to MetaMask
+            </button>
           </div>
           <div className="PleaseConnect__seperator">
             <div className="PleaseConnect__line"></div>
@@ -95,7 +114,12 @@ function PleaseConnect() {
             <div className="PleaseConnect__line"></div>
           </div>
           <div className="PleaseConnect__Connect">
-            <button onClick={connectTrustWallet}>Connect to Trusr wallet</button>
+            <button onClick={()=>{
+              let web3 = ConnectTrustWallet();
+              navigate('/vote', {state: {web3}});
+            }}>
+              Connect to Trusr wallet
+            </button>
           </div>
         </div>
         
