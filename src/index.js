@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter} from 'react-router-dom';
+import App from "./App";
 import "./index.css";
-// import App from "./App";
 // import WrongNetwork from "./components/WrongNetwork";
 // import Loader from "./components/Loader";
 import PleaseConnect from "./components/PleaseConnect";
@@ -10,7 +11,6 @@ import { ethers, Wallet } from "ethers";
 // import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 // import { resolvePath } from "react-router-dom";
@@ -57,16 +57,16 @@ const determinePageToOpen = async () => {
 
     // console.log(accounts);
 
+    
+
     ReactDOM.render(
-    <div>
-        {/* Hello World */}
-        <PleaseConnect />
-        {/* <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script> */}
-    </div>
+    <BrowserRouter>
+      <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
+      />
+      <App/>
+    </BrowserRouter>
     , document.getElementById("root"));
 
 } 
