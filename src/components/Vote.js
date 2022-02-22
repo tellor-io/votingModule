@@ -1,7 +1,7 @@
 
 import React, { useState, useContext } from "react";
 //Router
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 //Components
 import Footer from "./Footer";
 import Nav from "./Nav";
@@ -9,21 +9,24 @@ import Hero from "./Hero";
 //Web3
 import { ethers } from "ethers";
 //Context
-import { AppContext } from "../index";
+import { web3Context } from "../App";
 
-function Vote({currentAddress, signer}){
+function Vote(){
 
-    console.log("Loading Vote...");
+    const data = useContext(web3Context)
+
+    
+
     //Component State
     // const [currAddr, setCurrAddr] = useState("");
     // const [signer, setSigner] = useState({});
     //Context
-    const data = useContext(AppContext);
+    // const data = useContext(AppContext);
     //Globals
 
     //Listening for changes in ChainId (Mainnet/Rinkeby/Others)
-    window.ethereum.on("chainChanged", () => {
-    window.location.reload();
+    window.ethereum.on("chainChanged", (data) => {
+        window.location.reload();
     });
 
     console.log("Found Ethereum");
@@ -39,8 +42,8 @@ function Vote({currentAddress, signer}){
     // signer = 0;
     return (
     <div className="App">
-        {/* <Nav currAddr={currAddr} />
-        <Hero currAddr={currAddr} signer={signer} /> */}
+        <Nav currAddr={data.address} />
+        <Hero currAddr={data.address} signer={data.signer} />
         <Footer />
     </div>
     );
