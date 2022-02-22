@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../styles/PleaseConnect.css";
 import { ReactComponent as Tellor } from "../assets/Tellor_TRB.svg";
@@ -6,9 +6,16 @@ import { ReactComponent as Tellor } from "../assets/Tellor_TRB.svg";
 // import QRCodeModal from "@walletconnect/qrcode-modal";
 // import {Moral} from 'react-moralis'
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import sdf from '@metamask/detect-provider'
+
+import {web3Context} from '../App';
 
 import Web3 from "web3";
 import Web3Modal from "web3modal";
+
+import { Message } from 'semantic-ui-react';
+
+import {ethers} from 'ethers';
 
 let provider = undefined;
 
@@ -16,12 +23,17 @@ const ConnectMetaMask = async ()=>{
 
     let web3;
 
-    if(window.ethereum !== undefined){
+    if(Web3.givenProvider !== null){
 
-        web3 = new Web3(window.ethereum);
+      web3 = new Web3(Web3.givenProvider);
+    }
+    else{
+      web3 = null;
     }
 
-    console.log(web3);
+    console.log(`Web3:${web3}`);
+
+
     return web3;
 
 }
@@ -51,7 +63,8 @@ const ConnectTrustWallet = async ()=>{
   catch(error){
     provider = undefined;
   }
-  let web3;
+
+  let web3 = null;
   if(provider){
     web3 = new Web3(provider);
 
@@ -84,13 +97,26 @@ function PleaseConnect() {
   // useContext(undefined);
   let navigate = useNavigate();
 
+  const data = useContext(web3Context);
+
+  const provider2 = new ethers.providers.Web3Provider(
+      window.ethereum,
+      "any"
+  );
+
+  let signer = provider2.getSigner();
+  console.log(Object.keys(signer));
+  console.log(Object.values(signer));
+
   
 
   return (
     <div className='PleaseConnect__page'>
-
       <div className="PleaseConnect__Container">
-      
+      <Message hidden={!data.error} error>
+        <Message.Header>No MetaMask</Message.Header>
+        There is no Meta Mask wallet in this browser
+      </Message>
         {/* Logo */}
         <Tellor className="PleaseConnect__Swoosh" />
 
@@ -101,9 +127,22 @@ function PleaseConnect() {
         {/* Choose a wallet */}
         <div className="PleaseConnect__choose_wallet">
           <div className="PleaseConnect__Connect">
-            <button onClick={() => {
-              let web3 = ConnectMetaMask();
-              navigate('/vote', {web3});
+            <button onClick={async () => {
+              data.web3 = await ConnectMetaMask();
+              if(data.web3 === null){
+                console.log('NULL!');
+                data.error = true;
+                navigate('/');
+                return;
+              }
+
+              let accounts = await data.web3.eth.getAccounts();
+              data.address = accounts[0];
+              console.log(`Address: ${data.address}`);
+              let chain = await data.web3.eth.getChainId();
+              data.chainId = chain;
+              console.log(`Address:${data.address}, Chain:${data.chainId}`);
+              navigate('/vote');
             }}>
               Connect to MetaMask
             </button>
@@ -114,9 +153,14 @@ function PleaseConnect() {
             <div className="PleaseConnect__line"></div>
           </div>
           <div className="PleaseConnect__Connect">
-            <button onClick={()=>{
-              let web3 = ConnectTrustWallet();
-              navigate('/vote', {state: {web3}});
+            <button onClick={async ()=>{
+              data.web3 = await ConnectTrustWallet();
+              if(data.web3 === null){
+                data.error = false;
+                navigate('/');
+                return;
+              }
+              navigate('/vote');
             }}>
               Connect to Trusr wallet
             </button>
