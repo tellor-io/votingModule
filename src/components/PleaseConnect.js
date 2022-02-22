@@ -107,14 +107,26 @@ function PleaseConnect() {
   console.log(Object.keys(signer));
   console.log(Object.values(signer));
 
-  
+  let header;
+  let content;
+  if(data.error){
+    console.log(data.errorCode);
+    if(data.errorCode.localeCompare("setupweb3") == 0){
+        header = "No Web3 Instance";
+        content = "Please connect a wallet";
+    }
+    else if(data.errorCode.localeCompare("nometamask") == 0){
+      header = "No MetaMask";
+      content = "There is no Meta Mask wallet in this browser";
+    }
+  }
 
   return (
     <div className='PleaseConnect__page'>
       <div className="PleaseConnect__Container">
       <Message hidden={!data.error} error>
-        <Message.Header>No MetaMask</Message.Header>
-        There is no Meta Mask wallet in this browser
+        <Message.Header>{header}</Message.Header>
+        {content}
       </Message>
         {/* Logo */}
         <Tellor className="PleaseConnect__Swoosh" />
@@ -131,10 +143,11 @@ function PleaseConnect() {
               if(data.web3 === null){
                 console.log('NULL!');
                 data.error = true;
+                data.errorCode = 'nometamask';
                 navigate('/');
                 return;
               }
-
+              data.error = false;
               let accounts = await data.web3.listAccounts();
               data.address = accounts[0];
               let network = await data.web3.getNetwork();

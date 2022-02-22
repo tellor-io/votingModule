@@ -1,7 +1,7 @@
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 //Router
-import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, useNavigate, Navigate } from "react-router-dom";
 //Components
 import Footer from "./Footer";
 import Nav from "./Nav";
@@ -10,12 +10,24 @@ import Hero from "./Hero";
 //Context
 import { web3Context } from "../App";
 
-function Vote(){
 
+function Vote(){
+    
+    const navigate = useNavigate();
     const data = useContext(web3Context)
 
+    console.log(`Data: ${Object.values(data)}`);
     
-
+    // useEffect(()=>{
+    //      console.log("inside effect");
+    //     if(data === null || data.web3 === null || data.web3 === undefined){
+    //         data.error = true;
+    //         data.errorCode = 'setupweb3';
+    //         navigate('/');
+    //         return;
+    //     }
+    // }, []);
+    
     //Component State
     // const [currAddr, setCurrAddr] = useState("");
     // const [signer, setSigner] = useState({});
@@ -24,9 +36,9 @@ function Vote(){
     //Globals
 
     //Listening for changes in ChainId (Mainnet/Rinkeby/Others)
-    window.ethereum.on("chainChanged", (data) => {
-        window.location.reload();
-    });
+    // window.ethereum.on("chainChanged", (data) => {
+    //     window.location.reload();
+    // });
 
     console.log("Found Ethereum");
 
@@ -39,13 +51,24 @@ function Vote(){
 
     // currAddr = 0;
     // signer = 0;
-    return (
-    <div className="App">
-        <Nav currAddr={data.address} />
-        <Hero currAddr={data.address} signer={data.signer} />
-        <Footer />
-    </div>
-    );
+    if(data === null || data.web3 === null || data.web3 === undefined){
+        data.error = true;
+        data.errorCode = 'setupweb3';
+        return (
+            <Navigate replace to='/'/>
+        );
+    }
+    else{      
+        return (
+        <div className="App">
+            <Nav currAddr={data.address} />
+            <Hero currAddr={data.address} signer={data.signer} />
+            <Footer />
+        </div>
+        );
+    }
+
+
 }
 
 export default Vote;
