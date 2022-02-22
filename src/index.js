@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from 'react-router-dom';
-import App from "./App";
+import {App} from "./App";
 import "./index.css";
 // import WrongNetwork from "./components/WrongNetwork";
 // import Loader from "./components/Loader";
@@ -19,7 +19,7 @@ import Web3Modal from "web3modal";
 
 const tellorGovMainnet = "0x51d4088d4EeE00Ae4c55f46E0673e9997121DB00";
 const tellorGovRinkeby = "0xA64Bb0078eB80c97484f3f09Adb47b9B73CBcA00";
-export const AppContext = React.createContext();
+// export const AppContext = React.createContext();
 
 const determinePageToOpen = async () => {
     
