@@ -10,7 +10,6 @@ import sdf from '@metamask/detect-provider'
 
 import {web3Context} from '../App';
 
-import Web3 from "web3";
 import Web3Modal from "web3modal";
 
 import { Message } from 'semantic-ui-react';
@@ -23,9 +22,9 @@ const ConnectMetaMask = async ()=>{
 
     let web3;
 
-    if(Web3.givenProvider !== null){
+    if(window.ethereum !== null){
 
-      web3 = new Web3(Web3.givenProvider);
+      web3 = new ethers.providers.Web3Provider(window.ethereum);
     }
     else{
       web3 = null;
@@ -66,7 +65,7 @@ const ConnectTrustWallet = async ()=>{
 
   let web3 = null;
   if(provider){
-    web3 = new Web3(provider);
+    web3 = new ethers.providers.Web3Provider(provider);
 
     // Subscribe to accounts change
     provider.on("accountsChanged", (accounts) => {
@@ -136,11 +135,11 @@ function PleaseConnect() {
                 return;
               }
 
-              let accounts = await data.web3.eth.getAccounts();
+              let accounts = await data.web3.listAccounts();
               data.address = accounts[0];
-              console.log(`Address: ${data.address}`);
-              let chain = await data.web3.eth.getChainId();
-              data.chainId = chain;
+              let network = await data.web3.getNetwork();
+              data.chainId = network.chainId;
+              data.signer = data.web3.getSigner();
               console.log(`Address:${data.address}, Chain:${data.chainId}`);
               navigate('/vote');
             }}>
@@ -160,6 +159,12 @@ function PleaseConnect() {
                 navigate('/');
                 return;
               }
+
+              let accounts = await data.web3.listAccounts();
+              data.address = accounts[0];
+              let network = await data.web3.getNetwork();
+              data.chainId = network.chainId;
+              data.signer = data.web3.getSigner();              
               navigate('/vote');
             }}>
               Connect to Trusr wallet

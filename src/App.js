@@ -10,14 +10,23 @@ const web3Context = createContext({
   web3: null,
   chainId: 0x0,
   address: 0x0,
-  error: false
+  signer: null,
+  error: false,
+  errorCode: ''
 })
 
 function App() {
 
   return (
     <div className="App">
-      <web3Context.Provider value={{web3: null, chainId: 0x0, address: 0x0, error: false}}>
+      <web3Context.Provider value={{
+                                    web3: null, 
+                                    chainId: 0x0, 
+                                    address: 0x0,
+                                    signer: null,
+                                    error: false,
+                                    errorCode: ''
+                                  }}>
         <Routes>
           <Route path='/' element={<PleaseConnect/>}/>
           <Route path='/vote' element={<Vote/>}/>

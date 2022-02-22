@@ -25,7 +25,7 @@ function Nav({ currAddr }) {
       <div className="NavBar__Right">
         <Tippy content="To switch networks, use MetaMask extension.">
           <h1 className="NavBar__Network">{`Network: ${
-            data.chainId === "0x1" ? "Mainnet" : "Rinkeby"
+            data.chainId.toString(16) === "1" ? "Mainnet" : "Rinkeby"
           }`}</h1>
         </Tippy>
         <Tippy content="To change your address, use MetaMask extension.">

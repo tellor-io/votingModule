@@ -6,8 +6,7 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Nav from "./Nav";
 import Hero from "./Hero";
-//Web3
-import { ethers } from "ethers";
+
 //Context
 import { web3Context } from "../App";
 
