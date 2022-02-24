@@ -67,6 +67,13 @@
   border-radius: 50%;
 }
 
+.NavBar__Disconnect {
+  /* display: absolute; */
+  position: fixed;
+  float: right;
+  
+}
+
 /* MEDIA QUERIES*/
 @media (max-width: 1050px) {
   .NavBar__Network {
