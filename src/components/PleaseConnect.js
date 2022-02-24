@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../styles/PleaseConnect.css";
 import { ReactComponent as Tellor } from "../assets/Tellor_TRB.svg";
@@ -37,75 +37,60 @@ const ConnectMetaMask = async ()=>{
 
 }
 
-const ConnectTrustWallet = async ()=>{
-  
-
-  const providerOptions = {
-    walletconnect: {
-      package: WalletConnectProvider, // required
-      options: {
-        infuraId: "c520d3ab5dfc483e90822fbdfd707bf3" // required
-      }
-    } 
-  };
-
-  const web3Modal = new Web3Modal({
-    network: "mainnet", // optional
-    cacheProvider: true, // optional
-    providerOptions // required
-  });
-  
-  
-  try{
-    provider = await web3Modal.connect();
-  }
-  catch(error){
-    provider = undefined;
-  }
-
-  let web3 = null;
-  if(provider){
-    web3 = new ethers.providers.Web3Provider(provider);
-
-    // Subscribe to accounts change
-    provider.on("accountsChanged", (accounts) => {
-      console.log(accounts);
-    });
-
-    // Subscribe to chainId change
-    provider.on("chainChanged", (chainId) => {
-      console.log(chainId);
-    });
-
-    // Subscribe to provider connection
-    provider.on("connect", (info) => {
-      console.log(info);
-    });
-
-    // Subscribe to provider disconnection
-    provider.on("disconnect", (error) => {
-      console.log(error);
-    });
-  }
-
-  return web3;
-}
-
 function PleaseConnect() {
  
-  // useContext(undefined);
-  let navigate = useNavigate();
-
   const data = useContext(web3Context);
 
-  const provider2 = new ethers.providers.Web3Provider(
-      window.ethereum,
-      "any"
-  );
+  const [chainId, setChainId] = useState(0x0);
+  const [address, setAddress] = useState(0x0);
 
-  let signer = provider2.getSigner();
-  console.log(Object.keys(signer));
-  console.log(Object.values(signer));
+
+  const ConnectTrustWallet = async ()=>{
+  
+    
+    const providerOptions = {
+      walletconnect: {
+        package: WalletConnectProvider, // required
+        options: {
+          infuraId: "c520d3ab5dfc483e90822fbdfd707bf3" // required
+        }
+      } 
+    };
+  
+    const web3Modal = new Web3Modal({
+      network: "mainnet", // optional
+      cacheProvider: true, // optional
+      providerOptions // required
+    });
+    
+    web3Modal.clearCachedProvider();
+    
+    try{
+      provider = await web3Modal.connect();
+    }
+    catch(error){
+      provider = undefined;
+    }
+  
+    let web3 = null;
+    if(provider){
+      web3 = new ethers.providers.Web3Provider(provider);
+  
+      // Subscribe to provider connection
+      provider.on("connect", (info) => {
+        console.log(info);
+      });
+  
+      // Subscribe to provider disconnection
+      provider.on("disconnect", (error) => {
+        console.log(error);
+      });
+    }
+  
+    return [provider, web3];
+  }
+  // useContext(undefined);
+  let navigate = useNavigate();
 
   let header;
   let content;
@@ -114,6 +99,7 @@ function PleaseConnect() {
     if(data.errorCode.localeCompare("setupweb3") == 0){
         header = "No Web3 Instance";
         content = "Please connect a wallet";
+        data.error = false;
     }
     else if(data.errorCode.localeCompare("nometamask") == 0){
       header = "No MetaMask";
@@ -138,35 +124,8 @@ function PleaseConnect() {
         {/* Choose a wallet */}
         <div className="PleaseConnect__choose_wallet">
           <div className="PleaseConnect__Connect">
-            <button onClick={async () => {
-              data.web3 = await ConnectMetaMask();
-              if(data.web3 === null){
-                console.log('NULL!');
-                data.error = true;
-                data.errorCode = 'nometamask';
-                navigate('/');
-                return;
-              }
-              data.error = false;
-              let accounts = await data.web3.listAccounts();
-              data.address = accounts[0];
-              let network = await data.web3.getNetwork();
-              data.chainId = network.chainId;
-              data.signer = data.web3.getSigner();
-              console.log(`Address:${data.address}, Chain:${data.chainId}`);
-              navigate('/vote');
-            }}>
-              Connect to MetaMask
-            </button>
-          </div>
-          <div className="PleaseConnect__seperator">
-            <div className="PleaseConnect__line"></div>
-            <label className="PleaseConnect__seperator_text">or</label>
-            <div className="PleaseConnect__line"></div>
-          </div>
-          <div className="PleaseConnect__Connect">
             <button onClick={async ()=>{
-              data.web3 = await ConnectTrustWallet();
+              [data.provider, data.web3] = await ConnectTrustWallet();
               if(data.web3 === null){
                 data.error = false;
                 navigate('/');
@@ -180,7 +139,7 @@ function PleaseConnect() {
               data.signer = data.web3.getSigner();              
               navigate('/vote');
             }}>
-              Connect to Trusr wallet
+              Connect wallet
             </button>
           </div>
         </div>
@@ -205,3 +164,63 @@ function PleaseConnect() {
 }
 
 export default PleaseConnect;
+
+
+// const ConnectTrustWallet = async ()=>{
+  
+
+//   const providerOptions = {
+//     walletconnect: {
+//       package: WalletConnectProvider, // required
+//       options: {
+//         infuraId: "c520d3ab5dfc483e90822fbdfd707bf3" // required
+//       }
+//     } 
+//   };
+
+//   const web3Modal = new Web3Modal({
+//     network: "mainnet", // optional
+//     cacheProvider: false, // optional
+//     providerOptions // required
+//   });
+  
+
+//   web3Modal.clearCachedProvider();
+  
+//   try{
+//     provider = await web3Modal.connect();
+//   }
+//   catch(error){
+//     provider = undefined;
+//   }
+
+//   let web3 = null;
+//   if(provider){
+//     web3 = new ethers.providers.Web3Provider(provider);
+
+//     // Subscribe to accounts change
+//     provider.on("accountsChanged", (accounts) => {
+//       console.log(accounts);
+//     });
+
+//     // Subscribe to chainId change
+//     provider.on("chainChanged", (chainId) => {
+//       console.log(chainId);
+//     });
+
+//     // Subscribe to provider connection
+//     provider.on("connect", (info) => {
+//       console.log(info);
+//     });
+
+//     // Subscribe to provider disconnection
+//     provider.on("disconnect", (error) => {
+//       console.log('Disconnect');
+//       console.log(error);
+//     });
+
+//     // provider.
+//   }
+
+//   return web3;
+// }
