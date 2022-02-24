@@ -1,7 +1,6 @@
 import React, {createContext} from "react";
 //Router
 import {Route, Routes } from "react-router-dom";
-
                    
 import Vote from "./components/Vote";
 import PleaseConnect from "./components/PleaseConnect";

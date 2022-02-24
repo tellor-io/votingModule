@@ -21,13 +21,6 @@ function Vote(){
     
     const navigate = useNavigate();
 
-    
-    // console.log(`Vote:web3: ${}`)
-
-   
-
-    // currAddr = 0;
-    // signer = 0;
     if(data === null || data.web3 === null || data.web3 === undefined){
         data.error = true;
         data.errorCode = 'setupweb3';
@@ -46,6 +39,10 @@ function Vote(){
         });
         
         data.provider.on("accountsChanged", (account) => {
+            window.location.reload();
+        });
+
+        data.provider.on("disconnect", (account) => {
             window.location.reload();
         });
         

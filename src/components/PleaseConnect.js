@@ -2,40 +2,13 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../styles/PleaseConnect.css";
 import { ReactComponent as Tellor } from "../assets/Tellor_TRB.svg";
-// import WalletConnect from "@walletconnect/client";
-// import QRCodeModal from "@walletconnect/qrcode-modal";
-// import {Moral} from 'react-moralis'
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import sdf from '@metamask/detect-provider'
-
 import {web3Context} from '../App';
-
 import Web3Modal from "web3modal";
-
 import { Message } from 'semantic-ui-react';
-
 import {ethers} from 'ethers';
 
 let provider = undefined;
-
-const ConnectMetaMask = async ()=>{
-
-    let web3;
-
-    if(window.ethereum !== null){
-
-      web3 = new ethers.providers.Web3Provider(window.ethereum);
-    }
-    else{
-      web3 = null;
-    }
-
-    console.log(`Web3:${web3}`);
-
-
-    return web3;
-
-}
 
 function PleaseConnect() {
  
@@ -165,62 +138,3 @@ function PleaseConnect() {
 
 export default PleaseConnect;
 
-
-// const ConnectTrustWallet = async ()=>{
-  
-
-//   const providerOptions = {
-//     walletconnect: {
-//       package: WalletConnectProvider, // required
-//       options: {
-//         infuraId: "c520d3ab5dfc483e90822fbdfd707bf3" // required
-//       }
-//     } 
-//   };
-
-//   const web3Modal = new Web3Modal({
-//     network: "mainnet", // optional
-//     cacheProvider: false, // optional
-//     providerOptions // required
-//   });
-  
-
-//   web3Modal.clearCachedProvider();
-  
-//   try{
-//     provider = await web3Modal.connect();
-//   }
-//   catch(error){
-//     provider = undefined;
-//   }
-
-//   let web3 = null;
-//   if(provider){
-//     web3 = new ethers.providers.Web3Provider(provider);
-
-//     // Subscribe to accounts change
-//     provider.on("accountsChanged", (accounts) => {
-//       console.log(accounts);
-//     });
-
-//     // Subscribe to chainId change
-//     provider.on("chainChanged", (chainId) => {
-//       console.log(chainId);
-//     });
-
-//     // Subscribe to provider connection
-//     provider.on("connect", (info) => {
-//       console.log(info);
-//     });
-
-//     // Subscribe to provider disconnection
-//     provider.on("disconnect", (error) => {
-//       console.log('Disconnect');
-//       console.log(error);
-//     });
-
-//     // provider.
-//   }
-
-//   return web3;
-// }

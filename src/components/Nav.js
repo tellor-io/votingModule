@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import "../styles/Nav.css";
-// import { ReactComponent as TellorGrey } from "../assets/Tellor.svg";
 import LogoMaker from "./LogoMaker";
 import { web3Context } from "../App";
 import { truncateAddr } from "../utils/helpers";
@@ -8,13 +7,10 @@ import { Jazzicon } from "@ukstv/jazzicon-react";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
-// const LogoMaker = require('./LogoMaker').default;
-
 function Nav({currAddr, chainId}) {
   
   //Context
   const data = useContext(web3Context);
-  // const [chainId, setChainId] = useState(chainid);
   
   return (
     <div>
