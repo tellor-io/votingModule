@@ -36,7 +36,7 @@ function Hero({ currAddr, signer }) {
         let contract;
         let didAlreadyVote;
 
-        if (data.chainId === "0x1") {
+        if (data.chainId === 1) {
             contract = new ethers.Contract(
                 data.tellorGovMainnet,
                 TellorGovABI,
@@ -72,7 +72,7 @@ function Hero({ currAddr, signer }) {
                     "Execution reverted: You already voted at this address on this network. Thank you for voting!"
                 );
             }
-        } else if (data.chainId === "0x4") {
+        } else if (data.chainId === 4) {
             contract = new ethers.Contract(
                 data.tellorGovRinkeby,
                 TellorGovABI,
@@ -83,7 +83,7 @@ function Hero({ currAddr, signer }) {
                 voteIdRinkeby,
                 currAddr.length > 0 ? currAddr : data.currentAddress
             );
-
+            
             if (!didAlreadyVote) {
                 setLoading(true);
                 try {
@@ -100,7 +100,7 @@ function Hero({ currAddr, signer }) {
                             setErrMessage(err.message);
                         });
                 } catch (err) {
-                    // console.log("MetaMask Txn Err:: ", err.message);
+                    console.log("MetaMask Txn Err:: ", err.message);
                     setErrMessage(err.message);
                 }
             } else {
