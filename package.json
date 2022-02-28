@@ -2,6 +2,10 @@
   "name": "voting-module",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "^8.1.4",
+    "node": "^14.4.0"
+  },
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
     "@testing-library/jest-dom": "^5.11.4",
