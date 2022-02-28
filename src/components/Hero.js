@@ -3,7 +3,7 @@ import "../styles/Hero.css";
 //Web3
 import { ethers } from "ethers";
 //Context
-import { AppContext } from "../index";
+import { web3Context } from "../App";
 //Utils
 import TellorGovABI from "../utils/TellorGovABI.json";
 //Components
@@ -20,7 +20,7 @@ function Hero({ currAddr, signer }) {
     const [errMessage, setErrMessage] = useState(null);
     const [txnHash, setTxnHash] = useState(null);
     //Context
-    const data = useContext(AppContext);
+    const data = useContext(web3Context);
     //Globals
     const voteIdMainnet = 3; //current
     const voteIdRinkeby = 9; //current
@@ -36,7 +36,7 @@ function Hero({ currAddr, signer }) {
         let contract;
         let didAlreadyVote;
 
-        if (data.chainId === "0x1") {
+        if (data.chainId === 1) {
             contract = new ethers.Contract(
                 data.tellorGovMainnet,
                 TellorGovABI,
@@ -72,7 +72,7 @@ function Hero({ currAddr, signer }) {
                     "Execution reverted: You already voted at this address on this network. Thank you for voting!"
                 );
             }
-        } else if (data.chainId === "0x4") {
+        } else if (data.chainId === 4) {
             contract = new ethers.Contract(
                 data.tellorGovRinkeby,
                 TellorGovABI,
@@ -83,7 +83,7 @@ function Hero({ currAddr, signer }) {
                 voteIdRinkeby,
                 currAddr.length > 0 ? currAddr : data.currentAddress
             );
-
+            
             if (!didAlreadyVote) {
                 setLoading(true);
                 try {
@@ -100,7 +100,7 @@ function Hero({ currAddr, signer }) {
                             setErrMessage(err.message);
                         });
                 } catch (err) {
-                    // console.log("MetaMask Txn Err:: ", err.message);
+                    console.log("MetaMask Txn Err:: ", err.message);
                     setErrMessage(err.message);
                 }
             } else {
@@ -201,22 +201,26 @@ function Hero({ currAddr, signer }) {
                                 <h2 className="Hero__Duration">Duration</h2>
                                 <div className="Hero__duration_container_table">
                                     <Table definition>
-                                        <Table.Row>
-                                            <Table.Cell>
-                                                <label className='Hero__row_header'>
-                                                    Open
-                                                </label>
-                                            </Table.Cell>
-                                            <Table.Cell className="Hero__date_font">January 14th, 2022 @ 2pm EST</Table.Cell>
-                                        </Table.Row>
-                                        <Table.Row>
-                                            <Table.Cell>
-                                                <label className='Hero__row_header'>
-                                                    Close
-                                                </label>
-                                            </Table.Cell>
-                                            <Table.Cell className="Hero__date_font">January 21st, 2022 @ 2pm EST</Table.Cell>
-                                        </Table.Row>
+                                        <Table.Header>
+                                            <Table.Row>
+                                                <Table.Cell>
+                                                    <label className='Hero__row_header'>
+                                                        Open
+                                                    </label>
+                                                </Table.Cell>
+                                                <Table.Cell className="Hero__date_font">January 14th, 2022 @ 2pm EST</Table.Cell>
+                                            </Table.Row>
+                                        </Table.Header>
+                                        <Table.Body>
+                                            <Table.Row>
+                                                <Table.Cell>
+                                                    <label className='Hero__row_header'>
+                                                        Close
+                                                    </label>
+                                                </Table.Cell>
+                                                <Table.Cell className="Hero__date_font">January 21st, 2022 @ 2pm EST</Table.Cell>
+                                            </Table.Row>
+                                        </Table.Body>
                                     </Table>           
                                 </div>
                             </div>

@@ -1,14 +1,21 @@
-.PleaseConnect__Container {
+.PleaseConnect__page{
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+.PleaseConnect__Container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: -5%;
+  padding: 5% 5% 10% 5%;
 }
 .PleaseConnect__Container h1 {
   margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 1.5rem;
 }
 .PleaseConnect__Swoosh {
@@ -17,7 +24,7 @@
   margin: 2%;
 }
 .PleaseConnect__Connect {
-  margin: 3%;
+  margin: 0%;
 }
 .PleaseConnect__Connect button {
   font-size: 1rem !important;
@@ -27,7 +34,7 @@
   box-sizing: border-box;
   padding: 14px 40px 18px 40px;
   height: 50px;
-  width: auto;
+  width: 100%;
   border: none;
   border-radius: 25px;
   font-weight: 500;
@@ -40,5 +47,31 @@
   font-size: 1em;
 }
 .PleaseConnect__MetaMaskLink {
-  color: #000000;
+  padding: 1% 1%;
 }
+
+.PleaseConnect__choose_wallet{
+  /* border: 1px solid #383838; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 3% 0 10% 0;
+}
+
+.PleaseConnect__seperator{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.PleaseConnect__line{
+  height: 1px;
+  width: 200px;
+  margin: 0 5%;
+  background-color: rgb(170, 170, 170);
+}
+
+.PleaseConnect__seperator_text{
+
+}
+

@@ -1,46 +1,51 @@
-import React, { useState, useContext } from "react";
+import React, {createContext} from "react";
 //Router
-import { BrowserRouter as Router } from "react-router-dom";
-//Components
-import Footer from "./components/Footer";
-import Nav from "./components/Nav";
-import Hero from "./components/Hero";
-//Web3
-import { ethers } from "ethers";
-//Context
-import { AppContext } from "./index";
+import {Route, Routes } from "react-router-dom";
+                   
+import Vote from "./components/Vote";
+import PleaseConnect from "./components/PleaseConnect";
+
+const tellorGovMainnet = "0x51d4088d4EeE00Ae4c55f46E0673e9997121DB00";
+const tellorGovRinkeby = "0xA64Bb0078eB80c97484f3f09Adb47b9B73CBcA00";
+
+const web3Context = createContext({
+  web3: null,
+  provider: null,
+  chainId: 0x0,
+  address: 0x0,
+  signer: null,
+  error: false,
+  errorCode: '',
+  tellorGovMainnet: tellorGovMainnet,
+  tellorGovRinkeby: tellorGovRinkeby,
+})
 
 function App() {
-  //Component State
-  const [currAddr, setCurrAddr] = useState("");
-  const [signer, setSigner] = useState({});
-  //Context
-  const data = useContext(AppContext);
-  //Globals
-  //Listening for changes in ChainId (Mainnet/Rinkeby/Others)
-  window.ethereum.on("chainChanged", () => {
-    window.location.reload();
-  });
-  //Listening for changes in Metamask Accounts
-  window.ethereum.on("accountsChanged", (accounts) => {
-    setCurrAddr(ethers.utils.getAddress(accounts[0]));
-    const signerFromProvider = data.provider.getSigner();
-    setSigner(signerFromProvider);
-  });
 
   return (
     <div className="App">
-      <Router>
-      <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
-        />
-        <Nav currAddr={currAddr} />
-        <Hero currAddr={currAddr} signer={signer} />
-        <Footer />
-      </Router>
+      <web3Context.Provider value={{
+                                    web3: null, 
+                                    provider: null,
+                                    chainId: 0x0, 
+                                    address: 0x0,
+                                    signer: null,
+                                    error: false,
+                                    errorCode: '',
+                                    tellorGovMainnet: tellorGovMainnet,
+                                    tellorGovRinkeby: tellorGovRinkeby
+                                  }}>
+        <Routes>
+          <Route path='/' element={<PleaseConnect/>}/>
+          <Route path='/vote' element={<Vote/>}/>
+        </Routes>
+      </web3Context.Provider>
     </div>
   );
 }
 
-export default App;
+export {
+  App,
+  web3Context
+}
+
