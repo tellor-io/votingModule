@@ -11,7 +11,7 @@ function LogoMaker(){
                         <TellorWhite className="LogoMaker__Title"/>
                     </div>
                     <div className='LogoMaker__unstop'>
-                        <span>unstopable<br/>oracle</span>
+                        <span>unstoppable<br/>oracle</span>
                     </div>
                 </div>
             </a>
