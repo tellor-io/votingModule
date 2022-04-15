@@ -22,7 +22,7 @@ function Hero({ currAddr, signer }) {
     //Context
     const data = useContext(web3Context);
     //Globals
-    const voteIdMainnet = 3; //current
+    const voteIdMainnet = 4; //current
     const voteIdRinkeby = 9; //current
     //Refs
     const ref = React.createRef();
@@ -157,14 +157,14 @@ function Hero({ currAddr, signer }) {
                             <div className="Hero__description_container">
                                 <h1>What am I voting on exactly?</h1>
                                 <h2>
-                                    This is the vote to kick off the first Treasury which determines the
+                                    This is the vote to kick off the second Treasury which determines the
                                     parameters such as: the max amount of TRB that can be locked up, the
                                     rate of return, and the duration of the treasury period.{" "}
                                 </h2>
                                 <div className='Hero__divider'></div>
                                 <h2>
                                     <span className="bold underline">
-                                        For the first Treasury we are proposing:
+                                        For the second Treasury we are proposing:
                                     </span>
                                 </h2>
                                 <div className="Hero__description_container_table">
@@ -176,7 +176,7 @@ function Hero({ currAddr, signer }) {
                                             </Table.Row>
                                             <Table.Row className="row">
                                                 <Table.Cell className="Hero__row_header"> Rate of return </Table.Cell>
-                                                <Table.Cell className="Hero__row_item"> 2.5% ( ~10% APR) </Table.Cell>
+                                                <Table.Cell className="Hero__row_item"> 5% </Table.Cell>
                                             </Table.Row>
                                             <Table.Row className="row">
                                                 <Table.Cell className="Hero__row_header"> Duration </Table.Cell>
@@ -208,7 +208,7 @@ function Hero({ currAddr, signer }) {
                                                         Open
                                                     </label>
                                                 </Table.Cell>
-                                                <Table.Cell className="Hero__date_font">January 14th, 2022 @ 2pm EST</Table.Cell>
+                                                <Table.Cell className="Hero__date_font">April 17th, 2022</Table.Cell>
                                             </Table.Row>
                                         </Table.Header>
                                         <Table.Body>
@@ -218,7 +218,7 @@ function Hero({ currAddr, signer }) {
                                                         Close
                                                     </label>
                                                 </Table.Cell>
-                                                <Table.Cell className="Hero__date_font">January 21st, 2022 @ 2pm EST</Table.Cell>
+                                                <Table.Cell className="Hero__date_font">April 24th, 2022</Table.Cell>
                                             </Table.Row>
                                         </Table.Body>
                                     </Table>           
