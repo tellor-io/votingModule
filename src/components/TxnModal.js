@@ -8,6 +8,7 @@ function TxnModal({ chainId, address, justVoted, setJustVoted, txnHash }) {
     setJustVoted(false);
   };
 
+  console.log("chainId", chainId);
   return (
     <div className="TxnModal" style={{ display: justVoted ? "flex" : "none" }}>
       <div className="TxnModal__Content">
@@ -22,7 +23,7 @@ function TxnModal({ chainId, address, justVoted, setJustVoted, txnHash }) {
           </h1>
           <p>To view your transaction on etherscan, click below:</p>
           {txnHash ? (
-            chainId === "0x1" ? (
+            chainId === 1 ? (
               <a
                 href={`https://etherscan.io/tx/${txnHash}`}
                 target="_blank"
