@@ -11,7 +11,7 @@ import MetaMaskErrModal from "./MetaMaskErrModal";
 import TxnLoader from "./TxnLoader";
 import TxnModal from "./TxnModal";
 
-import {Table, Grid, Header, Button} from 'semantic-ui-react';
+import { Table, Grid } from 'semantic-ui-react';
 
 function Hero({ currAddr, signer }) {
     //Component State
