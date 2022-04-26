@@ -52,6 +52,7 @@
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -67,6 +68,13 @@
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
+
+## About The Project
+<div>
+  <img src="https://user-images.githubusercontent.com/21370350/165320540-80943ab0-be96-4ce1-bfe1-5dfd779cabea.png" alt="Project example" width="30%" height="100%">
+  <img src="https://user-images.githubusercontent.com/21370350/165320605-f9c82470-35fb-47fc-89a2-c361c9d5cc26.png" alt="Project example" width="30%" height="100%">
+  <img src="https://user-images.githubusercontent.com/21370350/165320664-340a3e99-bc46-4105-8827-8c24d916dd17.png" alt="Project example" width="30%" height="100%">
+</div>
 
 
 ### Built With
