@@ -37,7 +37,7 @@
   <h2 align="center">Tellor Voting Module</h2>
 
   <p align="center">
-    This project is a reusable voting interface for Tellor upgrades, Tellor treasuries and other community governance votes. Just update the description on what community members are voting on, as well as the votingID (coming from a Solidity contract) to be voted on, located at line 25 && 26 under src/components/Hero.js.
+    This project is a reusable voting interface for Tellor upgrades, Tellor treasuries and other community governance votes. Just update the description on what community members are voting on, as well as the votingID (coming from a Solidity contract) to be voted on, located at line 25 && 26 under src/components/Hero.js, depending on the chain where the vote is happening.
     <br />
     <br />
     <a href="https://github.com/tellor-io/votingModule/issues">Report Bug</a>
