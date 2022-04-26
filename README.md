@@ -34,10 +34,10 @@
     <img src="/public/Tellor_TRB.svg" alt="Logo" width="80" height="80">
   </a>
 
-  <h2 align="center">Tellor Frontend Boilerplate</h2>
+  <h2 align="center">Tellor Voting Module</h2>
 
   <p align="center">
-    This project is a GitHub template used to quickly start up Tellor Frontends. To add more features so all Tellor web3 apps can share the functionality, click on 'Request Feature' below and be sure to detail your specs. 
+    This project is a reusable voting interface for Tellor upgrades, Tellor treasuries and other commuunity governance votes. Just update the description on what community members are voting on, as well as the votingID (coming from a Solidity contract) to be voted on, located at line 25 && 26 under src/components/Hero.js.
     <br />
     <br />
     <a href="https://github.com/tellor-io/votingModule/issues">Report Bug</a>
@@ -65,7 +65,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -79,15 +78,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][screenshot]](https://github.com/tellor-io/votingModule)
-
-The idea behind the frontend boilerplate is to cut down development time, by creating a reusable module that contains helpful, necessary and reoccurring web3 frontend capabilities. This includes, but is not limited to: 
-
-* MetaMask/WalletConnect connectivity
-* Light/Dark Mode
-* Consistent Navbar and Footer
-
-A .prettierrc.js file is included so that if you use the prettier extension, you can set your settings in your text editor to only format on save if this file is present. This way you can keep your formatting preferences unique to your local machine and only affect repos that contain a file like this. This keeps other projects in Tellor.io with whatever formatting is unique to the developers working on them. 
 
 ### Built With
 
@@ -95,7 +85,7 @@ A .prettierrc.js file is included so that if you use the prettier extension, you
 * [web3](https://web3js.readthedocs.io/en/v1.7.3/)
 * [ethers.js](https://docs.ethers.io/v5/)
 * [jazzicon-react](https://www.npmjs.com/package/@ukstv/jazzicon-react)
-* [Material UI](https://mui.com/material-ui/getting-started/installation/)
+* [Semantic UI](https://semantic-ui.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -104,7 +94,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* This app requires node version 16.14.0 in order to run.
+* This app requires node version *14.4.0* in order to run.
 * We suggest installing nvm globally
   ```sh
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -128,30 +118,18 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm install
    ```
-3. Change node version to 16.14.0
+3. Change node version to 14.4.0
    ```sh
-   nvm use v16.14.0
+   nvm use v14.4.0
    ```
    Output:
    ```sh
-   Now using node v16.14.0 (npm v8.3.1)
+   Now using node v14.4.0 (npm v6.14.5)
    ```
 4. Spin up your local development server
    ```sh
    npm start
    ```
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this project to quickly spin up new Tellor frontends! Below are some examples of Tellor apps that use this template: 
-
-<div>
-  <img src="https://user-images.githubusercontent.com/21370350/165304994-7ee7a9cc-0ac3-459b-afc0-b533c8de4240.png" alt="Project example" width="30%" height="100%">
-  <img src="https://user-images.githubusercontent.com/21370350/165304921-9366d525-4443-4b2b-81e5-7e6923d92956.png" alt="Project example" width="30%" height="100%">
-  <img src="https://user-images.githubusercontent.com/21370350/165305095-9c6f2d3d-2d23-4a81-a146-ac10c6b19848.png" alt="Project example" width="30%" height="100%">
-</div>
 
 <!-- ROADMAP -->
 ## Roadmap
