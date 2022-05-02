@@ -22,7 +22,7 @@ function Hero({ currAddr, signer }) {
     //Context
     const data = useContext(web3Context);
     //Globals
-    const voteIdMainnet = 4; //current
+    const voteIdMainnet = 6; //current
     const voteIdRinkeby = 9; //current
     //Refs
     const ref = React.createRef();
