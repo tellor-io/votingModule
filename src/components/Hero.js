@@ -19,10 +19,11 @@ function Hero({ currAddr, signer }) {
     const [justVoted, setJustVoted] = useState(false);
     const [errMessage, setErrMessage] = useState(null);
     const [txnHash, setTxnHash] = useState(null);
+    const [voteIdMainnet, setVoteIdMainnet] = useState(''); //current
     //Context
     const data = useContext(web3Context);
     //Globals
-    const voteIdMainnet = 7; //current
+    
     const voteIdRinkeby = 9; //current
     //Refs
     const ref = React.createRef();
@@ -30,6 +31,12 @@ function Hero({ currAddr, signer }) {
         return <MetaMaskErrModal ref={ref}>{props.children}</MetaMaskErrModal>;
     });
     //Handlers
+    const handleChange = (event) => {
+        setVoteIdMainnet({
+          ...voteIdMainnet,
+          [event.target.name]: event.target.value,
+        })
+      }
     const handleVote = async (bool) => {
         if (!data) return;
 
@@ -42,9 +49,8 @@ function Hero({ currAddr, signer }) {
                 TellorGovABI,
                 Object.keys(signer) > 0 ? signer : data.signer
             );
-
             didAlreadyVote = await contract.didVote(
-                voteIdMainnet,
+                voteIdMainnet.voteIdMainnet,
                 currAddr.length > 0 ? currAddr : data.currentAddress
             );
 
@@ -52,7 +58,7 @@ function Hero({ currAddr, signer }) {
                 setLoading(true);
                 try {
                     contract
-                        .vote(voteIdMainnet, bool, false)
+                        .vote(voteIdMainnet.voteIdMainnet, bool, false)
                         .then((res) => {
                             setLoading(false);
                             setTxnHash(res.hash);
@@ -118,96 +124,57 @@ function Hero({ currAddr, signer }) {
                     <Grid.Row columns='equal' divided >
                         <Grid.Column>
                             <div className="Hero__decription-container">
-                            <h1> What is Tellor 360?</h1>
+                            <h1> Dispute Center</h1>
                                 <h2>
-                                    Tellor 360 is the next version of the Tellor protocol.  
+                                    Your one-stop shop for managing disputes within the Tellor oracle. Use this page to easily vote on an active dispute within the Tellor network. <br></br><br></br> Simply enter the dispute id below and vote "in favor" or "in opposition" of the dispute being raised.
                                 </h2>
-                                <h2 className="Hero__LinkToWhitePaper bold">
-                                Read the blog post {" "}
+                                <h2 className="Hero__LinkToWhitePaper">
+                                {" "}
+                                    <br></br>For more info on disputes,&nbsp;
                                     <a
-                                        href="https://tellor.io/blog/tellor360-the-next-level/"
-                                        alt="https://tellor.io/blog/tellor360-the-next-level/"
+                                        href="https://docs.tellor.io/tellor/disputing-data/introduction#dispute-mechanism"
+                                        alt="https://docs.tellor.io/tellor/disputing-data/introduction#dispute-mechanism"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="bold special"
                                         >
-                                        here
+                                        read our docs
                                     </a>
                                     .
-                                </h2>
-                                
-                                <h2 className="Hero__LinkToWhitePaper bold">
-                                    Review the codebase {" "}
-                                    <a
-                                        href="https://github.com/tellor-io"
-                                        alt="https://github.com/tellor-io"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bold special"
-                                        >
-                                        here
-                                    </a>
-                                    .
-                                </h2>
-                                <h2 className="Hero__LinkToWhitePaper bold">
-                                    Watch a walkthrough of the code {" "}
-                                    <a
-                                        href="https://youtu.be/qVZetE9IWt8"
-                                        alt="https://youtu.be/qVZetE9IWt8"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bold special"
-                                        >
-                                        here
-                                    </a>
-                                    .
-                                </h2>
-                                <h2 className="Hero__LinkToWhitePaper bold">
-                                    Watch the initial brainstorm session {" "}
-                                    <a
-                                        href="https://youtu.be/ISBrcVTMQ7g"
-                                        alt="https://youtu.be/ISBrcVTMQ7g"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bold special"
-                                        >
-                                        here
-                                    </a>
-                                    .
-                                </h2>
+                                </h2>        
                             </div>
 
                         </Grid.Column>
                         <Grid.Column >
                             <div className="Hero__description_container">
-                                <h1>What am I voting on exactly?</h1>
+                                <h1>What am I voting on?</h1>
                                 <h2>
-                                This is the vote to upgrade the Tellor protocol to its newest version, Tellor 360. which unifies Tellor's mechanisms across all evm chains. This will also be the last vote as we will be removing governance.{" "}
+                                Tellor values can all be disputed if they are suspected to be wrong. <p></p>Any holder of TRB can contribute their opinion as to whether the reporter who submitted the value should be slashed based on the information available regarding the dispute. <br></br><br></br> This is the cryptoeconmic security that enables Tellor to keep its data accurate!{" "}
                                 </h2>
-                                <div className='Hero__divider'></div>
+                                {/*<div className='Hero__divider'></div>
                                 <h2>
                                     <span className="bold underline">
-                                        Some Key Differences to Note:
+                                        Active Disputes:
                                     </span>
                                 </h2>
                                 <div className="Hero__description_container_table">
                                     <Table definition >
                                         <Table.Body>
                                             <Table.Row className="row">
-                                                <Table.Cell className="Hero__row_header"> Stake amount for Reporter's </Table.Cell>
-                                                <Table.Cell className="Hero__row_item"> $1500 USD or 100 TRB <br></br>(whichever is more) </Table.Cell>
+                                                <Table.Cell className="Hero__row_header"> Dispute ID </Table.Cell>
+                                                <Table.Cell className="Hero__row_item"> read from sc  </Table.Cell>
                                             </Table.Row>
                                             <Table.Row className="row">
-                                                <Table.Cell className="Hero__row_header"> Protocol Upgradeability? </Table.Cell>
-                                                <Table.Cell className="Hero__row_item"> Removed to reduce attack vector on entire protocol</Table.Cell>
+                                                <Table.Cell className="Hero__row_header"> Disputed Value </Table.Cell>
+                                                <Table.Cell className="Hero__row_item"> Read from sc</Table.Cell>
                                             </Table.Row>
                                             <Table.Row className="row">
-                                                <Table.Cell className="Hero__row_header"> Token Issuance </Table.Cell>
-                                                <Table.Cell className="Hero__row_item"> Fixed @ 8816.4 TRB per 30 days <br></br>(50% to team / 50% to time-based rewards on oracle contract ) </Table.Cell>
+                                                 <Table.Cell className="Hero__row_header"> Reason for Dispute </Table.Cell>
+                                                <Table.Cell className="Hero__row_item">blah blah blah </Table.Cell>
                                             </Table.Row>
                                         </Table.Body>
                                     </Table>
-                                </div>
+                                </div>*/}
                             </div>
                         </Grid.Column>
                     </Grid.Row>
@@ -231,7 +198,7 @@ function Hero({ currAddr, signer }) {
                                                         Open
                                                     </label>
                                                 </Table.Cell>
-                                                <Table.Cell className="Hero__date_font">October 25th, 2022</Table.Cell>
+                                                <Table.Cell className="Hero__date_font">Dispute Date</Table.Cell>
                                             </Table.Row>
                                         </Table.Header>
                                         <Table.Body>
@@ -241,7 +208,7 @@ function Hero({ currAddr, signer }) {
                                                         Close
                                                     </label>
                                                 </Table.Cell>
-                                                <Table.Cell className="Hero__date_font">November 1, 2022</Table.Cell>
+                                                <Table.Cell className="Hero__date_font">Dispute Date + 2 days</Table.Cell>
                                             </Table.Row>
                                         </Table.Body>
                                     </Table>           
@@ -252,6 +219,17 @@ function Hero({ currAddr, signer }) {
                         <Grid.Column >
                             <div className='Hero__buttons-container'>
                                 <h2 className='Hero__your_vote'>Your Vote</h2>
+                                <div>
+                                    Enter Dispute Id:
+                                    <input
+                                        type="number"
+                                        className="HeroParameterFeedNumberInputLarge"
+                                        name="voteIdMainnet"
+                                        value={voteIdMainnet.disputeId}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <br/>
                                 <div>
                                     <button
                                         onClick={() => handleVote(true)}
@@ -269,6 +247,7 @@ function Hero({ currAddr, signer }) {
                                         Vote in Opposition
                                     </button>
                                 </div>
+                                <br/>
                             </div>
                         </Grid.Column> 
                     </Grid.Row>
