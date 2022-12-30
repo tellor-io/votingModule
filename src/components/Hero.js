@@ -19,12 +19,12 @@ function Hero({ currAddr, signer }) {
     const [justVoted, setJustVoted] = useState(false);
     const [errMessage, setErrMessage] = useState(null);
     const [txnHash, setTxnHash] = useState(null);
-    const [voteIdMainnet, setVoteIdMainnet] = useState(''); //current
+    const [voteId, setVoteId] = useState(''); //current
+    //const [voteIdRinkeby, setVoteIdRinkeby] = useState(''); //current
     //Context
     const data = useContext(web3Context);
     //Globals
-    
-    const voteIdRinkeby = 9; //current
+    //const voteIdRinkeby = 9; //old way of hardcoding the dispute id
     //Refs
     const ref = React.createRef();
     const ErrModal = React.forwardRef((props, ref) => {
@@ -32,8 +32,8 @@ function Hero({ currAddr, signer }) {
     });
     //Handlers
     const handleChange = (event) => {
-        setVoteIdMainnet({
-          ...voteIdMainnet,
+        setVoteId({
+          ...voteId,
           [event.target.name]: event.target.value,
         })
       }
@@ -50,7 +50,7 @@ function Hero({ currAddr, signer }) {
                 Object.keys(signer) > 0 ? signer : data.signer
             );
             didAlreadyVote = await contract.didVote(
-                voteIdMainnet.voteIdMainnet,
+                voteId.voteId,
                 currAddr.length > 0 ? currAddr : data.currentAddress
             );
 
@@ -58,7 +58,7 @@ function Hero({ currAddr, signer }) {
                 setLoading(true);
                 try {
                     contract
-                        .vote(voteIdMainnet.voteIdMainnet, bool, false)
+                        .vote(voteId.voteId, bool, false)
                         .then((res) => {
                             setLoading(false);
                             setTxnHash(res.hash);
@@ -78,15 +78,15 @@ function Hero({ currAddr, signer }) {
                     "Execution reverted: You already voted at this address on this network. Thank you for voting!"
                 );
             }
-        } else if (data.chainId === 4) {
+        } else if (data.chainId === 5) {
             contract = new ethers.Contract(
-                data.tellorGovRinkeby,
+                data.tellorGovGoerli,
                 TellorGovABI,
                 Object.keys(signer) > 0 ? signer : data.signer
             );
 
             didAlreadyVote = await contract.didVote(
-                voteIdRinkeby,
+                voteId.voteId,
                 currAddr.length > 0 ? currAddr : data.currentAddress
             );
             
@@ -94,7 +94,7 @@ function Hero({ currAddr, signer }) {
                 setLoading(true);
                 try {
                     contract
-                        .vote(voteIdRinkeby, bool, false)
+                        .vote(voteId.Id, bool, false)
                         .then((res) => {
                             setLoading(false);
                             setTxnHash(res.hash);
@@ -224,8 +224,8 @@ function Hero({ currAddr, signer }) {
                                     <input
                                         type="number"
                                         className="HeroParameterFeedNumberInputLarge"
-                                        name="voteIdMainnet"
-                                        value={voteIdMainnet.disputeId}
+                                        name="voteId"
+                                        value={voteId.disputeId}
                                         onChange={handleChange}
                                     />
                                 </div>

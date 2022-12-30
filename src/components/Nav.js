@@ -20,9 +20,9 @@ function Nav({currAddr, chainId}) {
           <LogoMaker/>
         </div>
         <div className="NavBar__Right">
-          <Tippy content="To switch networks, use yout wallet.">
+          <Tippy content="To switch networks, use your wallet.">
             <h1 className="NavBar__Network">{`Network: ${
-              chainId === "0x1" ? "Mainnet" : "Rinkeby"
+              chainId === "0x1" ? "Mainnet" : "Goerli"
             }`}</h1>
           </Tippy>
           <Tippy content="To change your address, use your wallet.">
