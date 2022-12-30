@@ -5,8 +5,8 @@ import {Route, Routes } from "react-router-dom";
 import Vote from "./components/Vote";
 import PleaseConnect from "./components/PleaseConnect";
 
-const tellorGovMainnet = "0x51d4088d4EeE00Ae4c55f46E0673e9997121DB00";
-const tellorGovRinkeby = "0xA64Bb0078eB80c97484f3f09Adb47b9B73CBcA00";
+const tellorGovMainnet = "0x02803dcFD7Cb32E97320CFe7449BFb45b6C931b8";
+const tellorGovGoerli = "0x02803dcFD7Cb32E97320CFe7449BFb45b6C931b8";
 
 const web3Context = createContext({
   web3: null,
@@ -17,7 +17,7 @@ const web3Context = createContext({
   error: false,
   errorCode: '',
   tellorGovMainnet: tellorGovMainnet,
-  tellorGovRinkeby: tellorGovRinkeby,
+  tellorGovGoerli: tellorGovGoerli,
 })
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
                                     error: false,
                                     errorCode: '',
                                     tellorGovMainnet: tellorGovMainnet,
-                                    tellorGovRinkeby: tellorGovRinkeby
+                                    tellorGovGoerli: tellorGovGoerli
                                   }}>
         <Routes>
           <Route path='/' element={<PleaseConnect/>}/>

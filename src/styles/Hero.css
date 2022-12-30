@@ -2,7 +2,7 @@
 .Hero {
   width: 100%;
   height: 100%;
-  color: #2dfc9f;
+  color: white;
   font-family: "Inconsolata", monospace;
   background:#343232;
 }
@@ -36,7 +36,7 @@
 
 .Hero__decription-container h1{
   font-family:"Inconsolata", monospace;
-  color: white; 
+  color: #20f092; 
 }
 
  /* Links */
@@ -48,7 +48,7 @@
   font-weight: 500;
   font-size: 1.05rem;
   line-height: 1.5rem;
-  color: #ffffff;
+  color: #20f092;
 }
 /* Links : END */
 
@@ -66,7 +66,7 @@
 
 .Hero__description_container h1{
   padding: 0% 5%;
-  color: white;
+  color: #20f092;
 }
 
 /* Table styleing */
