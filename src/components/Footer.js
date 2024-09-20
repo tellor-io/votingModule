@@ -14,7 +14,7 @@ const Footer = () => {
             <span className="Footer__Logo">tellor</span>
           </div>
           <div className="Footer__Tagline">
-            <span>unstoppable</span>
+            <span> the unstoppable</span>
             <span>oracle</span>
           </div>
         </Link>
@@ -35,7 +35,7 @@ const Footer = () => {
             <Twitter />
           </a>
           <a
-            href="https://discord.com/invite/n7drGjh"
+            href="https://discord.gg/tellor"
             target="_blank"
             rel="noopener noreferrer"
           >
