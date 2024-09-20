@@ -69,12 +69,12 @@ function PleaseConnect() {
   let content;
   if(data.error){
     console.log(data.errorCode);
-    if(data.errorCode.localeCompare("setupweb3") == 0){
+    if(data.errorCode.localeCompare("setupweb3") === 0){
         header = "No Web3 Instance";
         content = "Please connect a wallet";
         data.error = false;
     }
-    else if(data.errorCode.localeCompare("nometamask") == 0){
+    else if(data.errorCode.localeCompare("nometamask") === 0){
       header = "No MetaMask";
       content = "There is no Meta Mask wallet in this browser";
     }

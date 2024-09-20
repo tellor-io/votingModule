@@ -53,6 +53,8 @@
     ]
   },
   "devDependencies": {
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0"
+
   }
 }
