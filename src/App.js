@@ -5,8 +5,8 @@ import {Route, Routes } from "react-router-dom";
 import Vote from "./components/Vote";
 import PleaseConnect from "./components/PleaseConnect";
 
-const tellorGovMainnet = "0x02803dcFD7Cb32E97320CFe7449BFb45b6C931b8";
-const tellorGovGoerli = "0x02803dcFD7Cb32E97320CFe7449BFb45b6C931b8";
+const tellorGovMainnet = "0xB30b1B98d8276b80bC4f5aF9f9170ef3220EC27D";
+const tellorGovGoerli = "0xA192f62726ea27979146dfF94f886a8E4Eb6D7A5";
 
 const web3Context = createContext({
   web3: null,

@@ -45,10 +45,12 @@
 .ErrModal__Message h1 {
   font-size: 1.25rem;
   margin-bottom: 5%;
+  color: #333333; /* Dark gray color for the header */
 }
 .ErrModal__Message p {
   font-size: 1.1rem;
   font-weight: 300;
   text-align: center;
   line-height: 1.5rem;
+  color: #555555; /* Slightly lighter gray for the message text */
 }

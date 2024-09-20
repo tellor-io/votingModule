@@ -32,88 +32,63 @@ function Hero({ currAddr, signer }) {
     });
     //Handlers
     const handleChange = (event) => {
+        const value = event.target.value;
         setVoteId({
-          ...voteId,
-          [event.target.name]: event.target.value,
-        })
-      }
-    const handleVote = async (bool) => {
+            ...voteId,
+            [event.target.name]: value,
+        });
+    }
+    const handleVote = async (bool, invalidQuery = false) => {
         if (!data) return;
 
         let contract;
         let didAlreadyVote;
 
-        if (data.chainId === 1) {
-            contract = new ethers.Contract(
-                data.tellorGovMainnet,
-                TellorGovABI,
-                Object.keys(signer) > 0 ? signer : data.signer
-            );
+        try {
+            if (data.chainId === 1) {
+                contract = new ethers.Contract(
+                    data.tellorGovMainnet,
+                    TellorGovABI,
+                    Object.keys(signer).length > 0 ? signer : data.signer
+                );
+            } else if (data.chainId === 11155111) {
+                contract = new ethers.Contract(
+                    data.tellorGovGoerli,
+                    TellorGovABI,
+                    Object.keys(signer).length > 0 ? signer : data.signer
+                );
+            } else {
+                throw new Error("Unsupported network");
+            }
+
+            // Ensure voteId is a valid number
+            if (!voteId.voteId || isNaN(Number(voteId.voteId))) {
+                throw new Error("Invalid vote ID");
+            }
+
+            const voteIdBN = ethers.BigNumber.from(voteId.voteId);
+
             didAlreadyVote = await contract.didVote(
-                voteId.voteId,
+                voteIdBN,
                 currAddr.length > 0 ? currAddr : data.currentAddress
             );
 
             if (!didAlreadyVote) {
                 setLoading(true);
-                try {
-                    contract
-                        .vote(voteId.voteId, bool, false)
-                        .then((res) => {
-                            setLoading(false);
-                            setTxnHash(res.hash);
-                            setJustVoted(true);
-                        })
-                        .catch((err) => {
-                            console.log("MetaMask Txn Err: ", err);
-                            setLoading(false);
-                            setErrMessage(err.message);
-                        });
-                } catch (err) {
-                    // console.log("ERR::: ", err.message);
-                    setErrMessage(err.message);
-                }
+                const tx = await contract.vote(voteIdBN, bool, invalidQuery);
+                const receipt = await tx.wait();
+                setLoading(false);
+                setTxnHash(receipt.transactionHash);
+                setJustVoted(true);
             } else {
                 setErrMessage(
-                    "Execution reverted: You already voted at this address on this network. Thank you for voting!"
+                    "You have already voted on this proposal. Thank you for voting!"
                 );
             }
-        } else if (data.chainId === 5) {
-            contract = new ethers.Contract(
-                data.tellorGovGoerli,
-                TellorGovABI,
-                Object.keys(signer) > 0 ? signer : data.signer
-            );
-
-            didAlreadyVote = await contract.didVote(
-                voteId.voteId,
-                currAddr.length > 0 ? currAddr : data.currentAddress
-            );
-            
-            if (!didAlreadyVote) {
-                setLoading(true);
-                try {
-                    contract
-                        .vote(voteId.Id, bool, false)
-                        .then((res) => {
-                            setLoading(false);
-                            setTxnHash(res.hash);
-                            setJustVoted(true);
-                        })
-                        .catch((err) => {
-                            //console.log("MetaMask Txn Err: ", err);
-                            setLoading(false);
-                            setErrMessage(err.message);
-                        });
-                } catch (err) {
-                    console.log("MetaMask Txn Err:: ", err.message);
-                    setErrMessage(err.message);
-                }
-            } else {
-                setErrMessage(
-                    "Execution reverted: You already voted at this address on this network. Thank you for voting!"
-                );
-            }
+        } catch (err) {
+            console.error("Vote Error:", err);
+            setLoading(false);
+            setErrMessage(err.message || "An error occurred during the transaction");
         }
     };
 
@@ -149,7 +124,7 @@ function Hero({ currAddr, signer }) {
                             <div className="Hero__description_container">
                                 <h1>What am I voting on?</h1>
                                 <h2>
-                                Tellor values can all be disputed if they are suspected to be wrong. <p></p>Any holder of TRB can contribute their opinion as to whether the reporter who submitted the value should be slashed based on the information available regarding the dispute. <br></br><br></br> This is the cryptoeconmic security that enables Tellor to keep its data accurate!{" "}
+                                Tellor values can all be disputed if they are suspected to be wrong. <p></p>Any holder of TRB can contribute their opinion as to whether the reporter who submitted the value should be slashed based on the information available regarding the dispute. <br></br><br></br> This is the crypto-economic security that enables Tellor to keep its data accurate!{" "}
                                 </h2>
                                 {/*<div className='Hero__divider'></div>
                                 <h2>
@@ -232,7 +207,7 @@ function Hero({ currAddr, signer }) {
                                 <br/>
                                 <div>
                                     <button
-                                        onClick={() => handleVote(true)}
+                                        onClick={() => handleVote(true, false)}
                                         className="Hero__VoteInFavor"
                                         >
                                         Vote in Favor
@@ -241,10 +216,19 @@ function Hero({ currAddr, signer }) {
                                 <br/>
                                 <div>
                                     <button
-                                        onClick={() => handleVote(false)}
+                                        onClick={() => handleVote(false, false)}
                                         className="Hero__VoteInOpposition"
                                         >
                                         Vote in Opposition
+                                    </button>
+                                </div>
+                                <br/>
+                                <div>
+                                    <button
+                                        onClick={() => handleVote(false, true)}
+                                        className="Hero__VoteInvalidQuery"
+                                    >
+                                        Vote Invalid Query
                                     </button>
                                 </div>
                                 <br/>

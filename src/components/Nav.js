@@ -22,7 +22,7 @@ function Nav({currAddr, chainId}) {
         <div className="NavBar__Right">
           <Tippy content="To switch networks, use your wallet.">
             <h1 className="NavBar__Network">{`Network: ${
-              chainId === "0x1" ? "Mainnet" : "Goerli"
+              chainId === "0x1" ? "Mainnet" : "Sepolia"
             }`}</h1>
           </Tippy>
           <Tippy content="To change your address, use your wallet.">

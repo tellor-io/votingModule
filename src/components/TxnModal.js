@@ -31,10 +31,10 @@ function TxnModal({ chainId, address, justVoted, setJustVoted, txnHash }) {
               >{`https://etherscan.io/tx/${txnHash}`}</a>
             ) : (
               <a
-                href={`https://goerli.etherscan.io/tx/${txnHash}`}
+                href={`https://sepolia.etherscan.io/tx/${txnHash}`}
                 target="_blank"
                 rel="noopener noreferrer"
-              >{`https://goerli.etherscan.io/tx/${txnHash}`}</a>
+              >{`https://sepolia.etherscan.io/tx/${txnHash}`}</a>
             )
           ) : null}
         </div>

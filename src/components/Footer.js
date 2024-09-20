@@ -18,7 +18,7 @@ const Footer = () => {
             <span>oracle</span>
           </div>
         </Link>
-        <p>&copy; 2022 Tellor</p>
+        <p>&copy; 2024 Tellor</p>
         <div className="Footer__SocialContainer">
           <a
             href="https://github.com/tellor-io/"

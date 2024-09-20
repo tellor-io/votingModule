@@ -160,7 +160,7 @@
   font-size: 1.4rem !important;
   line-height: 1.5rem !important;
   background-color: #ec6f6f;
-  color: #ffffff;
+  color: white;
   box-sizing: border-box;
   padding: 5% 5%px;
   height: 3.5rem;
@@ -171,6 +171,24 @@
   font-family: "Inconsolata", monospace;
 }
 .Hero__VoteInOpposition:hover {
+  cursor: pointer;
+}
+
+.Hero__VoteInvalidQuery {
+  font-size: 1.4rem !important;
+  line-height: 1.5rem !important;
+  background-color: #9AC0C3;
+  color: #555555;
+  box-sizing: border-box;
+  padding: 5% 5%px;
+  height: 3.5rem;
+  width: 90%;
+  border: 2px solid #9AC0C3;
+  border-radius: 25px;
+  font-weight: 600;
+  font-family: "Inconsolata", monospace;
+}
+.Hero__VoteInvalidQuery:hover {
   cursor: pointer;
 }
 

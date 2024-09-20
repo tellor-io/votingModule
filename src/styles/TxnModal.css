@@ -45,18 +45,20 @@
 .TxnModal__Message h1 {
   font-size: 1.25rem;
   margin-bottom: 5%;
+  color: #333333; /* Dark gray color for the header */
 }
 .TxnModal__Message p {
   font-size: 1.1rem;
   font-weight: 300;
   text-align: center;
   line-height: 1.5rem;
+  color: #555555; /* Slightly lighter gray for the message text */
 }
 .TxnModal__Message a {
   margin-top: 2%;
   width: 350px;
   word-wrap: break-word;
   text-align: center;
-  color: #555555;
+  color: #0066cc; /* Blue color for links */
   overflow: scroll;
 }
