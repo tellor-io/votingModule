@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "npm": "^8.1.4",
-    "node": "^14.4.0"
+    "node": "14.x"
   },
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
@@ -20,7 +20,7 @@
     "react-dom": "^17.0.2",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
     "type-fest": "0.21.3",
@@ -32,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -53,8 +54,7 @@
     ]
   },
   "devDependencies": {
-    "webpack-cli": "^4.9.1",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.0"
-
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "webpack-cli": "^4.9.1"
   }
 }
